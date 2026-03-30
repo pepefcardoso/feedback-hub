@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
+import { errorHandler } from './presentation/middlewares/errorHandler';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,8 @@ app.get('/', (req: Request, res: Response) => {
     message: 'Feedback Hub API is running',
   });
 });
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
