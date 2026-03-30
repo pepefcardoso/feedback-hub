@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum FeedbackStatus {
+  IDEA
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id           String @id @default(uuid())
+  email        String @unique
+  name         String
+  passwordHash String
+  role         Role   @default(USER)
+
+  feedbacks Feedback[]
+  votes     Vote[]
+  comments  Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Feedback {
+  id          String         @id @default(uuid())
+  title       String
+  description String
+  category    String
+  status      FeedbackStatus @default(IDEA)
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  votes    Vote[]
+  comments Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Vote {
+  userId     String
+  feedbackId String
+
+  user     User     @relation(fields: [userId], references: [id])
+  feedback Feedback @relation(fields: [feedbackId], references: [id])
+
+  @@id([userId, feedbackId])
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  content String
+
+  authorId   String
+  feedbackId String
+
+  author   User     @relation(fields: [authorId], references: [id])
+  feedback Feedback @relation(fields: [feedbackId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
