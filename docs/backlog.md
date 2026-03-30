@@ -11,7 +11,7 @@
 ## Phase 2: Business Rules & API (Backend)
 
 - ✅ **2.1** **Auth:** Implement User Registration Use Case and Controller (Password hashing with bcrypt).
-- **2.2** **Auth:** Implement Login Use Case and Controller (JWT generation in HttpOnly Cookie).
+- ✅ **2.2** **Auth:** Implement Login Use Case and Controller (JWT generation in HttpOnly Cookie).
 - **2.3** **Feedback:** Implement `CreateFeedbackUseCase` and Controller.
 - **2.4** **Feedback:** Implement `ListFeedbacksUseCase` (with pagination and aggregated vote count).
 - **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists).
