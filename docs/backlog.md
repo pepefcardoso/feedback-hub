@@ -3,7 +3,7 @@
 ## Phase 1: Foundation & Infrastructure (Backend)
 
 - ✅ **1.1** Initialize Node.js + TS project and configure ESLint/Prettier. 
-- **1.2** Configure PostgreSQL connection via Docker Compose.
+- ✅ **1.2** Configure PostgreSQL connection via Docker Compose.
 - **1.3** Initialize Prisma, define the schema (User, Feedback, Vote, Comment), and run migrations.
 - **1.4** Implement the `AppError` class and the Global Error Handling Middleware in Express.
 - **1.5** Implement basic dependency injection (Factories) for repositories.

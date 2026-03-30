@@ -1,6 +1,6 @@
 # Context
 
-Act as a Senior Software Engineer and Systems Architect. Your goal is to execute the **Research** and **Planning** phases of the RPI (Research-Planning-Implementation) workflow for task **[INSERT TASK ID OR DESCRIPTION HERE, e.g., "CreateFeedbackUseCase and Controller"]** from the Feedback Hub project backlog.
+Act as a Senior Software Engineer and Systems Architect. Your goal is to execute the **Research** and **Planning** phases of the RPI (Research-Planning-Implementation) workflow for task **[INSERT TASK]** from the Feedback Hub project backlog.
 
 # Reference Material
 
@@ -22,9 +22,9 @@ Act as a Senior Software Engineer and Systems Architect. Your goal is to execute
 
 # Deliverables
 
-1. **Implementation Guideline (`guideline_[TASK_NAME].md`):** Provide a structured Markdown file containing the full technical plan, code snippets for complex logic (e.g., Prisma queries or Next.js Server Actions), and a completion checklist.
+1. **Implementation Guideline (`guideline_[INSERT TASK].md`):** Provide a structured Markdown file containing the full technical plan, code snippets for complex logic (e.g., Prisma queries or Next.js Server Actions), and a completion checklist.
 2. **Context Manifest:** Provide a list of specific source code files (path/filenames based on our established Clean Architecture folder structure) that must be added to the AI agent's context during the final **Implementation** phase.
 
 # Output Format
 
-Please start by providing the content for `guideline_[TASK_NAME].md` inside a code block, followed by the Context Manifest list.
+Please start by providing the content for `guideline_[INSERT TASK].md` inside a code block, followed by the Context Manifest list.

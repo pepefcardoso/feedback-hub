@@ -8,7 +8,9 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "format": "prettier --write 'src/**/*.{ts,tsx,json,md}'"
+    "format": "prettier --write 'src/**/*.{ts,tsx,json,md}'",
+    "services:up": "docker compose up -d",
+    "services:down": "docker compose down"
   },
   "keywords": [],
   "author": "",
