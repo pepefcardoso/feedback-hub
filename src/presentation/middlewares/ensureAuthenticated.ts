@@ -1,11 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from '@shared/errors/AppError';
+import { JwtProvider } from '@infrastructure/security/JwtProvider';
 
 declare global {
   namespace Express {
     interface Request {
       user?: {
         id: string;
+        role: string;
       };
     }
   }
@@ -16,15 +18,23 @@ export function ensureAuthenticated(
   res: Response,
   next: NextFunction,
 ) {
-  const userId = req.headers['x-mock-user-id'] as string;
+  const token = req.cookies?.token;
 
-  if (!userId) {
+  if (!token) {
     throw new AppError('Authentication token is missing', 401);
   }
 
-  req.user = {
-    id: userId,
-  };
+  try {
+    const jwtProvider = new JwtProvider();
+    const decoded = jwtProvider.verify(token);
 
-  next();
+    req.user = {
+      id: decoded.sub,
+      role: decoded.role,
+    };
+
+    next();
+  } catch (error) {
+    throw new AppError('Invalid or expired token', 401);
+  }
 }

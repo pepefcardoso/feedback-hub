@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
+import cookieParser from 'cookie-parser';
 import { errorHandler } from './presentation/middlewares/errorHandler';
 import { userRoutes } from './presentation/routes/user.routes';
 import { feedbackRoutes } from './presentation/routes/feedback.routes';
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
 app.use('/api/feedbacks', feedbackRoutes);
