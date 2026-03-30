@@ -14,7 +14,7 @@
 - ✅ **2.2** **Auth:** Implement Login Use Case and Controller (JWT generation in HttpOnly Cookie).
 - ✅ **2.3** **Feedback:** Implement `CreateFeedbackUseCase` and Controller.
 - ✅ **2.4** **Feedback:** Implement `ListFeedbacksUseCase` (with pagination and aggregated vote count).
-- **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists).
+- ✅ **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists).
 - **2.6** **Middleware:** Create `ensureAuthenticated` and `ensureAdmin` middlewares for route protection.
 
 ## Phase 3: Frontend Foundation (Next.js)
