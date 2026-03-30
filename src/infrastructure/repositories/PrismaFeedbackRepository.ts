@@ -11,19 +11,32 @@ export class PrismaFeedbackRepository implements IFeedbackRepository {
   async findAll(params?: {
     skip?: number;
     take?: number;
-  }): Promise<Feedback[]> {
+    category?: string;
+  }): Promise<any[]> {
+    const where = params?.category ? { category: params.category } : {};
+
     return this.prisma.feedback.findMany({
+      where,
       skip: params?.skip,
       take: params?.take,
+      include: {
+        _count: {
+          select: { votes: true },
+        },
+        author: {
+          select: { id: true, name: true },
+        },
+      },
       orderBy: { createdAt: 'desc' },
     });
   }
 
-  async create(data: any): Promise<Feedback> {
-    return this.prisma.feedback.create({ data });
+  async count(params?: { category?: string }): Promise<number> {
+    const where = params?.category ? { category: params.category } : {};
+    return this.prisma.feedback.count({ where });
   }
 
-  async count(): Promise<number> {
-    return this.prisma.feedback.count();
+  async create(data: any): Promise<Feedback> {
+    return this.prisma.feedback.create({ data });
   }
 }
