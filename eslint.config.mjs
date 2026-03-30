@@ -1,0 +1,17 @@
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+
+export default defineConfig(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
+  {
+    rules: {
+      'no-console': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
+);
