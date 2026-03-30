@@ -14,7 +14,6 @@ export class LoginUserUseCase {
   async execute(data: LoginUserDTO): Promise<LoginUserResponseDTO> {
     const user = await this.userRepository.findByEmail(data.email);
 
-    // Rule: Generic error message to prevent account enumeration
     if (!user) {
       throw new AppError('Invalid email or password', 401);
     }
@@ -28,7 +27,6 @@ export class LoginUserUseCase {
       throw new AppError('Invalid email or password', 401);
     }
 
-    // Sign the token with user subject and role
     const token = this.jwtProvider.sign({ sub: user.id, role: user.role });
 
     return {

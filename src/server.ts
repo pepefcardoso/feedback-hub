@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import { errorHandler } from './presentation/middlewares/errorHandler';
 import { userRoutes } from './presentation/routes/user.routes';
+import { feedbackRoutes } from './presentation/routes/feedback.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
+app.use('/api/feedbacks', feedbackRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
@@ -20,6 +22,5 @@ app.get('/', (req: Request, res: Response) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`Server is listening on port ${PORT}`);
 });
