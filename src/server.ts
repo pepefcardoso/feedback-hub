@@ -1,12 +1,21 @@
+// feedback-hub/src/server.ts
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'; // <-- Add this import
 import { errorHandler } from './presentation/middlewares/errorHandler';
 import { userRoutes } from './presentation/routes/user.routes';
 import { feedbackRoutes } from './presentation/routes/feedback.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: 'http://localhost:3001',
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 app.use(cookieParser());
