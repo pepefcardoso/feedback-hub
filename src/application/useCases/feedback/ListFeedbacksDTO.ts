@@ -4,6 +4,8 @@ export interface ListFeedbacksDTO {
   page?: number;
   limit?: number;
   category?: string;
+  sortBy?: 'votes' | 'createdAt';
+  order?: 'asc' | 'desc';
 }
 
 export interface FeedbackItemDTO {

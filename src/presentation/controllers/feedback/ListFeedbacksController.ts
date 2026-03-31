@@ -7,6 +7,8 @@ const listFeedbacksSchema = z.object({
   page: z.coerce.number().int().positive().optional().default(1),
   limit: z.coerce.number().int().positive().max(50).optional().default(10),
   category: z.string().trim().optional(),
+  sortBy: z.enum(['votes', 'createdAt']).optional().default('createdAt'),
+  order: z.enum(['asc', 'desc']).optional().default('desc'),
 });
 
 export class ListFeedbacksController {

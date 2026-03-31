@@ -12,8 +12,16 @@ export class PrismaFeedbackRepository implements IFeedbackRepository {
     skip?: number;
     take?: number;
     category?: string;
+    sortBy?: 'votes' | 'createdAt';
+    order?: 'asc' | 'desc';
   }): Promise<any[]> {
     const where = params?.category ? { category: params.category } : {};
+
+    const sortBy = params?.sortBy || 'createdAt';
+    const order = params?.order || 'desc';
+
+    const orderBy =
+      sortBy === 'votes' ? { votes: { _count: order } } : { [sortBy]: order };
 
     return this.prisma.feedback.findMany({
       where,
@@ -27,7 +35,7 @@ export class PrismaFeedbackRepository implements IFeedbackRepository {
           select: { id: true, name: true },
         },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy,
     });
   }
 

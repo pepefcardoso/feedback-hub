@@ -14,6 +14,8 @@ export class ListFeedbacksUseCase {
         skip,
         take: limit,
         category: data.category,
+        sortBy: data.sortBy,
+        order: data.order,
       }),
       this.feedbackRepository.count({ category: data.category }),
     ]);

@@ -6,6 +6,8 @@ export interface IFeedbackRepository {
     skip?: number;
     take?: number;
     category?: string;
+    sortBy?: 'votes' | 'createdAt';
+    order?: 'asc' | 'desc';
   }): Promise<any[]>;
   count(params?: { category?: string }): Promise<number>;
   create(
