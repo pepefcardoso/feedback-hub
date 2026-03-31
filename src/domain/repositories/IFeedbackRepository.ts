@@ -13,4 +13,5 @@ export interface IFeedbackRepository {
   create(
     data: Omit<Feedback, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Feedback>;
+  update(id: string, data: Partial<Feedback>): Promise<Feedback>;
 }

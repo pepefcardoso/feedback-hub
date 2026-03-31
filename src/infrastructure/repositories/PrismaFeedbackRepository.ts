@@ -47,4 +47,11 @@ export class PrismaFeedbackRepository implements IFeedbackRepository {
   async create(data: any): Promise<Feedback> {
     return this.prisma.feedback.create({ data });
   }
+
+  async update(id: string, data: Partial<Feedback>): Promise<Feedback> {
+    return this.prisma.feedback.update({
+      where: { id },
+      data,
+    });
+  }
 }

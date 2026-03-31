@@ -4,11 +4,14 @@ import { ListFeedbacksController } from '../controllers/feedback/ListFeedbacksCo
 import { ToggleVoteController } from '../controllers/vote/ToggleVoteController';
 import { asyncHandler } from '@shared/utils/asyncHandler';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { UpdateFeedbackStatusController } from '../controllers/feedback/UpdateFeedbackStatusController';
+import { ensureAdmin } from '../middlewares/ensureAdmin';
 
 const feedbackRoutes = Router();
 const createFeedbackController = new CreateFeedbackController();
 const listFeedbacksController = new ListFeedbacksController();
 const toggleVoteController = new ToggleVoteController();
+const updateFeedbackStatusController = new UpdateFeedbackStatusController();
 
 feedbackRoutes.get(
   '/',
@@ -25,6 +28,13 @@ feedbackRoutes.post(
   '/:id/vote',
   ensureAuthenticated,
   asyncHandler((req, res) => toggleVoteController.handle(req, res)),
+);
+
+feedbackRoutes.patch(
+  '/:id/status',
+  ensureAuthenticated,
+  ensureAdmin,
+  asyncHandler((req, res) => updateFeedbackStatusController.handle(req, res)),
 );
 
 export { feedbackRoutes };
