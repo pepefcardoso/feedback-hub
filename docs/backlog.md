@@ -28,7 +28,7 @@
 
 - ✅ **4.1** Integrate Login and Registration pages with the API (session state management).
 - ✅ **4.2** Implement the feedback suggestion feed on the homepage (consuming the listing route).
-- **4.3** Create a Modal/Page to submit a new feedback suggestion.
+- ✅ **4.3** Create a Modal/Page to submit a new feedback suggestion.
 - **4.4** Implement the Vote button with an optimistic update (Optimistic UI).
 - **4.5** Develop the Administrative Dashboard (Change feedback status: Idea -> Planned -> In Progress -> Completed).
 
