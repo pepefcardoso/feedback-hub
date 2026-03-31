@@ -30,7 +30,7 @@ export class ListFeedbacksUseCase {
         id: fb.author.id,
         name: fb.author.name,
       },
-      voteCount: fb._count.votes,
+      voteCount: fb.voteCount,
       createdAt: fb.createdAt,
     }));
 

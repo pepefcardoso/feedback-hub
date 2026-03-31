@@ -34,7 +34,7 @@
 
 ## Phase 5: Refinement and Deployment
 
-- **5.1** Code review and refactoring of N+1 queries if identified (check Prisma `include` usage).
+- ✅ **5.1** Code review and refactoring of N+1 queries if identified (check Prisma `include` usage).
 - **5.2** Deploy the Database (e.g., Supabase, Render, Neon).
 - **5.3** Deploy the Backend (e.g., Render, Railway).
 - **5.4** Deploy the Frontend (Vercel).

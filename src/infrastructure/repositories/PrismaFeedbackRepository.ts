@@ -20,17 +20,14 @@ export class PrismaFeedbackRepository implements IFeedbackRepository {
     const sortBy = params?.sortBy || 'createdAt';
     const order = params?.order || 'desc';
 
-    const orderBy =
-      sortBy === 'votes' ? { votes: { _count: order } } : { [sortBy]: order };
+    const orderByColumn = sortBy === 'votes' ? 'voteCount' : sortBy;
+    const orderBy = { [orderByColumn]: order };
 
     return this.prisma.feedback.findMany({
       where,
       skip: params?.skip,
       take: params?.take,
       include: {
-        _count: {
-          select: { votes: true },
-        },
         author: {
           select: { id: true, name: true },
         },
