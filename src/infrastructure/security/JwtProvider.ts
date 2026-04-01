@@ -17,7 +17,7 @@ export class JwtProvider implements IJWTProvider {
 
   sign(payload: object, expiresIn?: string): string {
     const options: SignOptions = {
-      expiresIn: (expiresIn || this.defaultExpiresIn) as any,
+      expiresIn: (expiresIn || this.defaultExpiresIn) as unknown as SignOptions['expiresIn'],
     };
 
     return jwt.sign({ ...payload }, this.secret, options);
