@@ -16,14 +16,18 @@ export class ListFeedbacksController {
     const parsedQuery = listFeedbacksSchema.parse(req.query);
 
     const feedbackRepository = RepositoryFactory.getFeedbackRepository();
-    const useCase = new ListFeedbacksUseCase(feedbackRepository);
+    const voteRepository = RepositoryFactory.getVoteRepository();
+    const useCase = new ListFeedbacksUseCase(
+      feedbackRepository,
+      voteRepository,
+    );
 
-    const result = await useCase.execute(parsedQuery);
+    const userId = (req as any).user?.id;
 
-    return res.status(200).json({
-      status: 'success',
-      data: result.data,
-      meta: result.meta,
-    });
+    const result = await useCase.execute({ ...parsedQuery, userId });
+
+    return res
+      .status(200)
+      .json({ status: 'success', data: result.data, meta: result.meta });
   }
 }

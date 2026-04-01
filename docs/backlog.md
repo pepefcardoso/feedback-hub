@@ -42,7 +42,7 @@
 - ✅ **4.2** **Auth UI (Login):** Implement the Login form in `app/login/page.tsx` and integrate with the `POST /login` API route. Establish session state management (e.g., AuthContext).
 - ✅ **4.3** Implement the feedback suggestion feed on the homepage (consuming the listing route).
 - ✅ **4.4** Create a Modal/Page to submit a new feedback suggestion.
-- ⏳ **4.5** Implement the Vote button with an optimistic update (Optimistic UI). _Note: UI is currently decorative only; logic and API calls are missing._
+- ✅ **4.5** Implement the Vote button with an optimistic update (Optimistic UI). _Note: UI is currently decorative only; logic and API calls are missing._
 - ✅ **4.6** Develop the Administrative Dashboard (Change feedback status: Idea -> Planned -> In Progress -> Completed).
 - ✅ **4.7** **UI/UX:** Wire up the Category Sidebar and Sort Dropdown to dynamically filter/sort the homepage feed (connecting to backend sorting).
 - ⏳ **4.8** **UI/UX:** Implement the Feedback Detail Page (`app/feedback/[id]/page.tsx`), fetching comprehensive data (Title, description, status badge, author).

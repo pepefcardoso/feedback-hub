@@ -14,5 +14,9 @@ export interface IVoteRepository {
     userId: string,
     feedbackId: string,
   ): Promise<Vote | null>;
+  findManyByUserAndFeedbacks(
+    userId: string,
+    feedbackIds: string[],
+  ): Promise<Vote[]>;
   saveVoteTransaction(params: SaveVoteTransactionParams): Promise<void>;
 }

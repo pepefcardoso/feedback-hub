@@ -1,8 +1,12 @@
 import { IFeedbackRepository } from '@domain/repositories/IFeedbackRepository';
+import { IVoteRepository } from '@domain/repositories/IVoteRepository';
 import { ListFeedbacksDTO, ListFeedbacksResponseDTO } from './ListFeedbacksDTO';
 
 export class ListFeedbacksUseCase {
-  constructor(private feedbackRepository: IFeedbackRepository) {}
+  constructor(
+    private feedbackRepository: IFeedbackRepository,
+    private voteRepository: IVoteRepository,
+  ) {}
 
   async execute(data: ListFeedbacksDTO): Promise<ListFeedbacksResponseDTO> {
     const page = data.page || 1;
@@ -20,17 +24,26 @@ export class ListFeedbacksUseCase {
       this.feedbackRepository.count({ category: data.category }),
     ]);
 
+    let userVotedIds = new Set<string>();
+
+    if (data.userId && feedbacks.length > 0) {
+      const feedbackIds = feedbacks.map((fb: any) => fb.id);
+      const votes = await this.voteRepository.findManyByUserAndFeedbacks(
+        data.userId,
+        feedbackIds,
+      );
+      userVotedIds = new Set(votes.map((v) => v.feedbackId));
+    }
+
     const mappedData = feedbacks.map((fb: any) => ({
       id: fb.id,
       title: fb.title,
       description: fb.description,
       category: fb.category,
       status: fb.status,
-      author: {
-        id: fb.author.id,
-        name: fb.author.name,
-      },
+      author: { id: fb.author.id, name: fb.author.name },
       voteCount: fb.voteCount,
+      hasVoted: userVotedIds.has(fb.id),
       createdAt: fb.createdAt,
     }));
 

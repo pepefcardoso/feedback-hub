@@ -45,4 +45,16 @@ export class PrismaVoteRepository implements IVoteRepository {
       });
     });
   }
+
+  async findManyByUserAndFeedbacks(
+    userId: string,
+    feedbackIds: string[],
+  ): Promise<Vote[]> {
+    return this.prisma.vote.findMany({
+      where: {
+        userId,
+        feedbackId: { in: feedbackIds },
+      },
+    });
+  }
 }

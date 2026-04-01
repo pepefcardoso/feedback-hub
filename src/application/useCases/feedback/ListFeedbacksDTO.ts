@@ -6,6 +6,7 @@ export interface ListFeedbacksDTO {
   category?: string;
   sortBy?: 'votes' | 'createdAt';
   order?: 'asc' | 'desc';
+  userId?: string;
 }
 
 export interface FeedbackItemDTO {
@@ -19,6 +20,7 @@ export interface FeedbackItemDTO {
     name: string;
   };
   voteCount: number;
+  hasVoted: boolean;
   createdAt: Date;
 }
 
