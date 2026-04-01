@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { RegisterUserController } from '../controllers/user/RegisterUserController';
 import { LoginUserController } from '../controllers/user/LoginUserController';
+import { LogoutUserController } from '../controllers/user/LogoutUserController';
 import { GetMeController } from '../controllers/user/GetMeController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { asyncHandler } from '@shared/utils/asyncHandler';
@@ -8,6 +9,7 @@ import { asyncHandler } from '@shared/utils/asyncHandler';
 const userRoutes = Router();
 const registerUserController = new RegisterUserController();
 const loginUserController = new LoginUserController();
+const logoutUserController = new LogoutUserController();
 const getMeController = new GetMeController();
 
 userRoutes.post(
@@ -18,6 +20,11 @@ userRoutes.post(
 userRoutes.post(
   '/login',
   asyncHandler((req, res) => loginUserController.handle(req, res)),
+);
+
+userRoutes.post(
+  '/logout',
+  asyncHandler((req, res) => logoutUserController.handle(req, res)),
 );
 
 userRoutes.get(
