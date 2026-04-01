@@ -51,18 +51,7 @@
 
 ## Phase 5: Refinement and Deployment
 
-- ✅ **5.1** Code review and refactoring of N+1 queries if identified (check Prisma `include` usage).
-- ⏳ **5.2** Deploy the Database (e.g., Supabase, Render, Neon).
-- ⏳ **5.3** Deploy the Backend (e.g., Render, Railway).
-- ⏳ **5.4** Deploy the Frontend (Vercel).
-- ⏳ **5.5** Update the README with local setup instructions and production links.
-
----
-
-## Technical Debt & Architecture Flags
-
-**Premature Complexity regarding `VoteType` enum (`UPVOTE` / `DOWNVOTE`)**
-The original design document specifies a simple upvote toggle, but the current schema and use case support bidirectional voting (with a `countChange` of ±2). However, the UI never exposes a downvote action, rendering half of this system dead code. _Recommendation:_ If downvoting is not on the immediate roadmap, we should simplify this to a boolean toggle to reduce surface area and testing burden.
-
-**Unnecessary Surrogate Key on `Vote.id`**
-The first database migration correctly used a composite primary key `(userId, feedbackId)`. A subsequent migration replaced this with a surrogate UUID `id` and demoted the composite to a unique index. Because all lookups still go through the unique index, the surrogate key adds no query benefit and clutters the schema. _Recommendation:_ Revert to the composite primary key when feasible to enforce clean relational design, though this is not an immediate blocker for MVP.
+- ⏳ **5.1** Deploy the Database (e.g., Supabase, Render, Neon).
+- ⏳ **5.2** Deploy the Backend (e.g., Render, Railway).
+- ⏳ **5.3** Deploy the Frontend (Vercel).
+- ⏳ **5.4** Update the README with local setup instructions and production links.
