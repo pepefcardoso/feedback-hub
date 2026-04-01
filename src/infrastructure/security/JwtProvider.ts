@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { IJWTProvider } from '@application/ports/IJWTProvider';
 
 export class JwtProvider implements IJWTProvider {
@@ -16,9 +16,11 @@ export class JwtProvider implements IJWTProvider {
   }
 
   sign(payload: object, expiresIn?: string): string {
-    return jwt.sign(payload, this.secret, {
-      expiresIn: expiresIn || this.defaultExpiresIn,
-    });
+    const options: SignOptions = {
+      expiresIn: (expiresIn || this.defaultExpiresIn) as any,
+    };
+
+    return jwt.sign({ ...payload }, this.secret, options);
   }
 
   verify(token: string): any {

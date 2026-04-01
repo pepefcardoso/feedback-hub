@@ -1,4 +1,4 @@
-import { Feedback } from '../../generated/prisma/client';
+import { Feedback, FeedbackStatus } from '../../generated/prisma/client';
 
 export type FeedbackWithAuthor = Feedback & {
   author: {
@@ -18,7 +18,13 @@ export interface IFeedbackRepository {
   }): Promise<any[]>;
   count(params?: { category?: string }): Promise<number>;
   create(
-    data: Omit<Feedback, 'id' | 'createdAt' | 'updatedAt'>,
+    data: Omit<
+      Feedback,
+      'id' | 'createdAt' | 'updatedAt' | 'status' | 'voteCount'
+    > & {
+      status?: FeedbackStatus;
+      voteCount?: number;
+    },
   ): Promise<Feedback>;
   update(id: string, data: Partial<Feedback>): Promise<Feedback>;
 }
