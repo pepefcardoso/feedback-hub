@@ -25,16 +25,16 @@
 - ✅ **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists).
 - ✅ **2.6** **Middleware:** Create `ensureAuthenticated` and `ensureAdmin` middlewares for route protection.
 - ✅ **2.7** **Feedback:** Implement `GetFeedbackByIdUseCase` and Controller (`GET /:id` - including author and vote status).
-- ⏳ **2.8** **Comments:** Implement `CreateCommentUseCase` and Controller (`POST /:id/comments`).
-- ⏳ **2.9** **Comments:** Implement `ListCommentsUseCase` and Controller (`GET /:id/comments`).
+- ✅ **2.8** **Comments:** Implement `CreateCommentUseCase` and Controller (`POST /:id/comments`).
+- ✅ **2.9** **Comments:** Implement `ListCommentsUseCase` and Controller (`GET /:id/comments`).
 - ✅ **2.10** **Feedback (Enhancement):** Update `ListFeedbacksUseCase` to support query parameters for filtering (by `category`) and sorting (by `voteCount` DESC or `createdAt` DESC).
 
 ## Phase 3: Frontend Foundation (Next.js)
 
 - ✅ **3.1** Initialize Next.js (App Router), Tailwind, and install shadcn/ui.
 - ✅ **3.2** Create the routing structure (`/`, `/login`, `/register`, `/feedback/[id]`, `/admin`).
-- ⚠️ **3.3** Configure the HTTP client (Axios or Fetch wrapper) with interceptors to handle Cookies/Credentials. _Note: Port mismatch in fallback (BUG-4)._
-- ⚠️ **3.4** Develop base layout components (Navbar, Category Sidebar, Footer). _Note: Navbar data unwrap issue (BUG-2)._
+- ⚠️ **3.3** Configure the HTTP client (Axios or Fetch wrapper) with interceptors to handle Cookies/Credentials.
+- ⚠️ **3.4** Develop base layout components (Navbar, Category Sidebar, Footer).
 
 ## Phase 4: Frontend Integration & UI
 
@@ -47,7 +47,7 @@
 - ✅ **4.7** **UI/UX:** Wire up the Category Sidebar and Sort Dropdown to dynamically filter/sort the homepage feed (connecting to backend sorting).
 - ⏳ **4.8** **UI/UX:** Implement the Feedback Detail Page (`app/feedback/[id]/page.tsx`), fetching comprehensive data (Title, description, status badge, author).
 - ⏳ **4.9** **UI/UX:** Implement the Comments Section in the Detail Page (List of comments and "Add Comment" form).
-- ⚠️ **4.10** **UI/UX:** Implement a User Dropdown/Profile Menu in the Navbar (using `GET /me` data) with a Logout action. _Note: Broken by BUG-2 (data unwrap) and BUG-3 (missing logout route)._
+- ⚠️ **4.10** **UI/UX:** Implement a User Dropdown/Profile Menu in the Navbar (using `GET /me` data) with a Logout action.
 
 ## Phase 5: Refinement and Deployment
 
