@@ -26,11 +26,14 @@ export class LoginUserController {
 
     const { user, token } = await useCase.execute(parsedData);
 
+    const isProduction = process.env.NODE_ENV === 'production';
+
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'strict',
       maxAge: 1000 * 60 * 60 * 24,
+      path: '/',
     });
 
     return res.status(200).json({
