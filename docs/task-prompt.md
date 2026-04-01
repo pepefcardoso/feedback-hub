@@ -1,30 +1,41 @@
-# Context
+# Role
+Act as a Senior Software Engineer and Systems Architect. Your goal is to execute the Research and Planning phases for task: **[INSERT TASK]** within the Feedback Hub project.
 
-Act as a Senior Software Engineer and Systems Architect. Your goal is to execute the **Research** and **Planning** phases of the RPI (Research-Planning-Implementation) workflow for task **[INSERT TASK]** from the Feedback Hub project backlog.
-
-# Reference Material
-
-- Project Stack: Node.js, Express, TypeScript, Prisma (PostgreSQL) for the backend. Next.js (App Router), Tailwind CSS, shadcn/ui for the frontend.
-- Architectural Standard: Pragmatic Clean Architecture (Domain, Application, Infrastructure, Presentation).
-- Project Documentation: Refer to the existing `design-docs.md`, `architecture-guidelines.md`, `security-guidelines.md`, and `ui-ux-guidelines.md`.
+# Project Stack & Standards
+- Backend: Node.js, Express, TypeScript, Prisma (PostgreSQL).
+- Frontend: Next.js (App Router), Tailwind CSS, shadcn/ui.
+- Architecture: Pragmatic Clean Architecture (Domain, Application, Infrastructure, Presentation).
+- Requirements: Strict Dependency Rule, `AppError` handling, and Zod validation.
 
 # Instructions
+Perform a deep-dive analysis of the task requirements and existing project architecture. Generate a high-density **Implementation Guideline** designed to be consumed by an automated coding agent. 
 
-1. **Analyze Documentation:** Thoroughly review the architecture and security guidelines to ensure the solution adheres to the Dependency Rule (no outer layers in Use Cases), proper Error Handling (using `AppError`), and Input Validation (using Zod).
-2. **Research Phase:**
-   - Identify the specific Clean Architecture layers (Entities, Repositories, Use Cases, Controllers, Routes) or Next.js components affected by this task.
-   - Check for existing dependencies, APIs, middlewares (e.g., `ensureAuthenticated`), or utility functions that should be reused.
-   - Identify potential technical debt, concurrency risks (e.g., race conditions in voting), or N+1 query issues that might impact the implementation.
-3. **Planning Phase:**
-   - Break down the task into a logical, step-by-step technical execution plan.
-   - Define any new functions, classes, Prisma schema changes, or DTOs required.
-   - Outline the testing strategy (e.g., Unit tests for Use Cases, Integration tests for Express routes) for this task.
+The guideline must include:
+1. **Context Manifest:** A list of existing files (paths) that the coder agent must read to understand the current state.
+2. **Schema & DTOs:** Exact Prisma model changes or TypeScript interfaces required.
+3. **Step-by-Step Execution:** A technical checklist of which files to create/modify and the specific logic to implement in each layer (Entities -> Repositories -> Use Cases -> Controllers/Actions).
+4. **Logic Snippets:** Direct code for complex Prisma queries, state management, or specialized business rules.
+5. **Testing Requirements:** Specific assertions for Unit (Use Cases) and Integration (Routes) tests.
 
-# Deliverables
+# Output Requirement
+Return ONLY the content of the markdown file `guideline_[INSERT TASK].md`. Do not provide conversational filler or meta-commentary. Start your response immediately with the markdown code block.
 
-1. **Implementation Guideline (`guideline_[INSERT TASK].md`):** Provide a structured Markdown file containing the full technical plan, code snippets for complex logic (e.g., Prisma queries or Next.js Server Actions), and a completion checklist.
-2. **Context Manifest:** Provide a list of specific source code files (path/filenames based on our established Clean Architecture folder structure) that must be added to the AI agent's context during the final **Implementation** phase.
+---
 
-# Output Format
+### Output Format Example
+# Implementation Spec: [TASK NAME]
 
-Please start by providing the content for `guideline_[INSERT TASK].md` inside a code block, followed by the Context Manifest list.
+## 1. Context Manifest (Files to Load)
+- `src/domain/entities/...`
+- `src/infrastructure/prisma/schema.prisma`
+
+## 2. Architectural Changes
+- [Details]
+
+## 3. Step-by-Step Implementation Plan
+- [ ] Task 1...
+- [ ] Task 2...
+
+## 4. Reference Snippets
+```typescript
+// Complex logic here

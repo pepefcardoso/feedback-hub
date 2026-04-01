@@ -2,7 +2,7 @@
 
 ## Phase 0: Stabilization & Hotfixes
 
-- ⏳ **BUG-1** (P0): `RepositoryFactory` is missing `getVoteRepository()`. Causes a runtime crash on all voting attempts.
+- ✅ **BUG-1** (P0): `RepositoryFactory` is missing `getVoteRepository()`. Causes a runtime crash on all voting attempts.
 - ⏳ **BUG-2** (P1): `Navbar.getUser()` incorrectly unwraps the API envelope, causing silent data corruption for user sessions and breaking the UserNav.
 - ⏳ **BUG-3** (P1): Missing `/api/auth/logout` backend route, causing logout to silently fail and leave the `HttpOnly` cookie active.
 - ⏳ **BUG-4** (P1): Port/URL mismatch across environments (`server.ts`, `.env`, `api-client.ts`), causing persistent CORS errors and blocking frontend-to-backend communication.
