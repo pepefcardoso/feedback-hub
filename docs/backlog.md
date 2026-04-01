@@ -33,8 +33,8 @@
 
 - ✅ **3.1** Initialize Next.js (App Router), Tailwind, and install shadcn/ui.
 - ✅ **3.2** Create the routing structure (`/`, `/login`, `/register`, `/feedback/[id]`, `/admin`).
-- ⚠️ **3.3** Configure the HTTP client (Axios or Fetch wrapper) with interceptors to handle Cookies/Credentials.
-- ⚠️ **3.4** Develop base layout components (Navbar, Category Sidebar, Footer).
+- ✅ **3.3** Configure the HTTP client (Axios or Fetch wrapper) with interceptors to handle Cookies/Credentials.
+- ✅ **3.4** Develop base layout components (Navbar, Category Sidebar, Footer).
 
 ## Phase 4: Frontend Integration & UI
 
