@@ -22,9 +22,9 @@
 - ✅ **2.2** **Auth:** Implement Login Use Case and Controller (JWT generation in HttpOnly Cookie).
 - ✅ **2.3** **Feedback:** Implement `CreateFeedbackUseCase` and Controller.
 - ✅ **2.4** **Feedback:** Implement `ListFeedbacksUseCase` (with pagination and aggregated vote count).
-- ⚠️ **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists). _Note: Missing getVoteRepository in Factory (BUG-1)._
+- ✅ **2.5** **Vote:** Implement `ToggleVoteUseCase` (Rule: create a vote, or delete it if it already exists).
 - ✅ **2.6** **Middleware:** Create `ensureAuthenticated` and `ensureAdmin` middlewares for route protection.
-- ⏳ **2.7** **Feedback:** Implement `GetFeedbackByIdUseCase` and Controller (`GET /:id` - including author and vote status).
+- ✅ **2.7** **Feedback:** Implement `GetFeedbackByIdUseCase` and Controller (`GET /:id` - including author and vote status).
 - ⏳ **2.8** **Comments:** Implement `CreateCommentUseCase` and Controller (`POST /:id/comments`).
 - ⏳ **2.9** **Comments:** Implement `ListCommentsUseCase` and Controller (`GET /:id/comments`).
 - ✅ **2.10** **Feedback (Enhancement):** Update `ListFeedbacksUseCase` to support query parameters for filtering (by `category`) and sorting (by `voteCount` DESC or `createdAt` DESC).

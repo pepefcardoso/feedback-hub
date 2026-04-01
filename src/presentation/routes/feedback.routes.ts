@@ -5,13 +5,16 @@ import { ToggleVoteController } from '../controllers/vote/ToggleVoteController';
 import { asyncHandler } from '@shared/utils/asyncHandler';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 import { UpdateFeedbackStatusController } from '../controllers/feedback/UpdateFeedbackStatusController';
+import { GetFeedbackByIdController } from '../controllers/feedback/GetFeedbackByIdController';
 import { ensureAdmin } from '../middlewares/ensureAdmin';
+import { optionalAuth } from '../middlewares/optionalAuth';
 
 const feedbackRoutes = Router();
 const createFeedbackController = new CreateFeedbackController();
 const listFeedbacksController = new ListFeedbacksController();
 const toggleVoteController = new ToggleVoteController();
 const updateFeedbackStatusController = new UpdateFeedbackStatusController();
+const getFeedbackByIdController = new GetFeedbackByIdController();
 
 feedbackRoutes.get(
   '/',
@@ -35,6 +38,12 @@ feedbackRoutes.patch(
   ensureAuthenticated,
   ensureAdmin,
   asyncHandler((req, res) => updateFeedbackStatusController.handle(req, res)),
+);
+
+feedbackRoutes.get(
+  '/:id',
+  optionalAuth,
+  asyncHandler((req, res) => getFeedbackByIdController.handle(req, res)),
 );
 
 export { feedbackRoutes };
