@@ -19,31 +19,45 @@ export class PrismaVoteRepository implements IVoteRepository {
   }
 
   async saveVoteTransaction(params: SaveVoteTransactionParams): Promise<void> {
-    await this.prisma.$transaction(async (tx) => {
-      if (params.action === 'CREATE') {
-        await tx.vote.create({
-          data: {
-            userId: params.userId,
-            feedbackId: params.feedbackId,
-            type: params.type!,
-          },
-        });
-      } else if (params.action === 'UPDATE') {
-        await tx.vote.update({
-          where: { id: params.voteId! },
-          data: { type: params.type! },
-        });
-      } else if (params.action === 'DELETE') {
-        await tx.vote.delete({
-          where: { id: params.voteId! },
-        });
-      }
+    const operations: any[] = [];
 
-      await tx.feedback.update({
+    switch (params.action) {
+      case 'CREATE':
+        operations.push(
+          this.prisma.vote.create({
+            data: {
+              userId: params.userId,
+              feedbackId: params.feedbackId,
+              type: params.type,
+            },
+          }),
+        );
+        break;
+      case 'UPDATE':
+        operations.push(
+          this.prisma.vote.update({
+            where: { id: params.voteId },
+            data: { type: params.type },
+          }),
+        );
+        break;
+      case 'DELETE':
+        operations.push(
+          this.prisma.vote.delete({
+            where: { id: params.voteId },
+          }),
+        );
+        break;
+    }
+
+    operations.push(
+      this.prisma.feedback.update({
         where: { id: params.feedbackId },
         data: { voteCount: { increment: params.countChange } },
-      });
-    });
+      }),
+    );
+
+    await this.prisma.$transaction(operations);
   }
 
   async findManyByUserAndFeedbacks(

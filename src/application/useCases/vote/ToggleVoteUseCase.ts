@@ -1,4 +1,7 @@
-import { IVoteRepository } from '@domain/repositories/IVoteRepository';
+import {
+  IVoteRepository,
+  SaveVoteTransactionParams,
+} from '@domain/repositories/IVoteRepository';
 import { IFeedbackRepository } from '@domain/repositories/IFeedbackRepository';
 import { AppError } from '@shared/errors/AppError';
 import { VoteType } from '../../../generated/prisma/client';
@@ -26,33 +29,45 @@ export class ToggleVoteUseCase {
       data.feedbackId,
     );
 
-    let action: 'CREATE' | 'UPDATE' | 'DELETE';
-    let countChange = 0;
+    const baseParams = {
+      userId: data.userId,
+      feedbackId: data.feedbackId,
+    };
+
+    let transactionParams: SaveVoteTransactionParams;
 
     if (existingVote) {
       if (existingVote.type === data.type) {
-        action = 'DELETE';
-        countChange = data.type === 'UPVOTE' ? -1 : 1;
+        transactionParams = {
+          ...baseParams,
+          action: 'DELETE',
+          voteId: existingVote.id,
+          countChange: data.type === 'UPVOTE' ? -1 : 1,
+        };
       } else {
-        action = 'UPDATE';
-        countChange = data.type === 'UPVOTE' ? 2 : -2;
+        transactionParams = {
+          ...baseParams,
+          action: 'UPDATE',
+          voteId: existingVote.id,
+          type: data.type,
+          countChange: data.type === 'UPVOTE' ? 2 : -2,
+        };
       }
     } else {
-      action = 'CREATE';
-      countChange = data.type === 'UPVOTE' ? 1 : -1;
+      transactionParams = {
+        ...baseParams,
+        action: 'CREATE',
+        type: data.type,
+        countChange: data.type === 'UPVOTE' ? 1 : -1,
+      };
     }
 
-    await this.voteRepository.saveVoteTransaction({
-      userId: data.userId,
-      feedbackId: data.feedbackId,
-      voteId: existingVote?.id,
-      action,
-      type: data.type,
-      countChange,
-    });
+    await this.voteRepository.saveVoteTransaction(transactionParams);
 
     console.log(
-      `[Vote] User ${data.userId} -> ${action} ${data.type} on Feedback ${data.feedbackId}`,
+      `[Vote] User ${data.userId} -> ${transactionParams.action} ${
+        'type' in transactionParams ? transactionParams.type : 'REMOVED'
+      } on Feedback ${data.feedbackId}`,
     );
   }
 }

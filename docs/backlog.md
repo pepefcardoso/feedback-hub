@@ -45,7 +45,7 @@
 - ✅ **4.5** Implement the Vote button with an optimistic update (Optimistic UI). _Note: UI is currently decorative only; logic and API calls are missing._
 - ✅ **4.6** Develop the Administrative Dashboard (Change feedback status: Idea -> Planned -> In Progress -> Completed).
 - ✅ **4.7** **UI/UX:** Wire up the Category Sidebar and Sort Dropdown to dynamically filter/sort the homepage feed (connecting to backend sorting).
-- ⏳ **4.8** **UI/UX:** Implement the Feedback Detail Page (`app/feedback/[id]/page.tsx`), fetching comprehensive data (Title, description, status badge, author).
+- ✅ **4.8** **UI/UX:** Implement the Feedback Detail Page (`app/feedback/[id]/page.tsx`), fetching comprehensive data (Title, description, status badge, author).
 - ⏳ **4.9** **UI/UX:** Implement the Comments Section in the Detail Page (List of comments and "Add Comment" form).
 - ⚠️ **4.10** **UI/UX:** Implement a User Dropdown/Profile Menu in the Navbar (using `GET /me` data) with a Logout action.
 
