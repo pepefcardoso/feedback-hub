@@ -23,6 +23,7 @@ const listCommentsController = new ListCommentsController();
 
 feedbackRoutes.get(
   '/',
+  optionalAuth,
   asyncHandler((req, res) => listFeedbacksController.handle(req, res)),
 );
 

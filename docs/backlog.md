@@ -7,8 +7,8 @@
 - ✅ **BUG-3** (P1): Missing `/api/auth/logout` backend route, causing logout to silently fail and leave the `HttpOnly` cookie active.
 - ✅ **BUG-4** (P1): Port/URL mismatch across environments (`server.ts`, `.env`, `api-client.ts`), causing persistent CORS errors and blocking frontend-to-backend communication.
 - ✅ **BUG-5** (P2): Seed admin user has an invalid `passwordHash` (not a real bcrypt string), making it impossible to log into the admin dashboard locally.
-- ⏳ **BUG-6** (P1): Navbar does not change state when the user is logged in (session/auth state is not properly reflecting in the UI).
-- ⏳ **BUG-7** (P2): Footer GitHub link is incorrect (update to `github.com/pepefcardoso/feedback-hub`).
+- ✅ **BUG-6** (P1): Navbar does not change state when the user is logged in (session/auth state is not properly reflecting in the UI).
+- ✅ **BUG-7** (P2): Footer GitHub link is incorrect (update to `github.com/pepefcardoso/feedback-hub`).
 
 ## Phase 1: Foundation & Infrastructure (Backend)
 
@@ -50,8 +50,8 @@
 - ✅ **4.8** **UI/UX:** Implement the Feedback Detail Page (`app/feedback/[id]/page.tsx`), fetching comprehensive data (Title, description, status badge, author).
 - ✅ **4.9** **UI/UX:** Implement the Comments Section in the Detail Page (List of comments and "Add Comment" form).
 - ✅ **4.10** **UI/UX:** Implement a User Dropdown/Profile Menu in the Navbar (using `GET /me` data) with a Logout action.
-- ⏳ **4.11** **UI/UX:** Develop the User Profile page (currently not implemented).
-- ⏳ **4.12** **UI/UX:** Create missing static/utility pages: `About`, `Privacy`, `Roadmap`, and `Feed`.
+- ✅ **4.11** **UI/UX:** Develop the User Profile page (currently not implemented).
+- ✅ **4.12** **UI/UX:** Create missing static/utility pages: `About`, `Privacy`, `Roadmap`, and `Feed`.
 
 ## Phase 5: Refinement and Deployment
 
