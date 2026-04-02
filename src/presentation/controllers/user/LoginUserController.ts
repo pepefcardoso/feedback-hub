@@ -34,7 +34,8 @@ export class LoginUserController {
       sameSite: isProduction ? 'none' : 'strict',
       maxAge: 1000 * 60 * 60 * 24,
       path: '/',
-    });
+      partitioned: isProduction ? true : undefined,
+    } as any);
 
     return res.status(200).json({
       status: 'success',
