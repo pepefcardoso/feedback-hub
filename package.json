@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "start": "node dist/server.js",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "format": "prettier --write 'src/**/*.{ts,tsx,json,md}'",
@@ -46,6 +46,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "prettier": "^3.2.5",
     "prisma": "^7.6.0",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.57.2"
