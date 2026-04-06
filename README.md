@@ -92,12 +92,6 @@ Feedback Hub is a full-stack application for collecting, managing, and prioritiz
 
 ---
 
-## 🚀 Live Demo
-* **Frontend:** [Insert Vercel URL Here]
-* **Backend API:** [Insert Render URL Here]
-
----
-
 ## 🛠 Local Development Setup
 
 ### Prerequisites
